@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/mathematic-inc/confset/compare/v0.1.0...v0.1.1) (2026-09-15)
+
+
+### Bug Fixes
+
+* Keep Pkl release packages consistent across platforms ([610b068](https://github.com/mathematic-inc/confset/commit/610b0685e2e77f3071bef0e337538acf7031e542))
+
 ## 0.1.0 (2026-09-15)
 
 
