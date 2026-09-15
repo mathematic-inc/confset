@@ -14,9 +14,9 @@ confset generate --watch
 A small configuration:
 
 ```pkl
-amends "package://github.com/mathematic-inc/confset/releases/download/v0.1.1/confset@0.1.0#/Config.pkl" // x-release-please-version
+amends "package://github.com/mathematic-inc/confset/releases/download/v0.1.1/confset@0.1.1#/Config.pkl" // x-release-please-version
 
-import "package://github.com/mathematic-inc/confset/releases/download/v0.1.1/confset@0.1.0#/Builtins.pkl" // x-release-please-version
+import "package://github.com/mathematic-inc/confset/releases/download/v0.1.1/confset@0.1.1#/Builtins.pkl" // x-release-please-version
 
 tools {
   ["lint"] = (Builtins.oxlint) {
