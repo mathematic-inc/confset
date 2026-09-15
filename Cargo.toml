@@ -1,0 +1,66 @@
+[package]
+name = "confset"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.98"
+description = "Generate native tool configuration from Pkl"
+license = "MIT"
+repository = "https://github.com/mathematic-inc/confset"
+authors = ["Mathematic Inc."]
+categories = ["command-line-utilities", "development-tools"]
+keywords = ["cli", "configuration", "formatter", "linter", "pkl"]
+include = ["Cargo.lock", "Cargo.toml", "LICENSE", "README.md", "build.rs", "docs/**", "examples/**", "pkl/**", "src/**"]
+build = "build.rs"
+
+[package.metadata.binstall]
+pkg-url = "{ repo }/releases/download/v{ version }/confset-{ version }-{ target }.tar.gz"
+bin-dir = "{ bin }{ binary-ext }"
+pkg-fmt = "tgz"
+
+[package.metadata.binstall.overrides.x86_64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/confset-{ version }-{ target }.zip"
+pkg-fmt = "zip"
+
+[package.metadata.binstall.overrides.aarch64-pc-windows-msvc]
+pkg-url = "{ repo }/releases/download/v{ version }/confset-{ version }-{ target }.zip"
+pkg-fmt = "zip"
+
+[[bin]]
+name = "confset"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1.0.104"
+base64 = "0.23.1"
+clap = { version = "4.6.7", features = ["derive", "env"] }
+ctrlc = { version = "3.5.2", features = ["termination"] }
+dirs = "7.0.0"
+fs2 = "0.4.3"
+notify = "8.2.0"
+pklr = "=2.0.4"
+pollster = "1.0.1"
+serde = { version = "1.0.229", features = ["derive"] }
+serde_json = { version = "1.0.151", features = ["float_roundtrip", "preserve_order"] }
+serde_yaml_ng = "0.10.0"
+sha2 = "0.11.0"
+tempfile = "3.27.0"
+toml = "1.1.6"
+
+[dev-dependencies]
+filetime = "0.2.29"
+insta = "1.48.0"
+
+[build-dependencies]
+serde_json = "1.0.151"
+sha2 = "0.11.0"
+zip = { version = "8.6.0", default-features = false, features = ["deflate"] }
+
+[target."cfg(windows)".dependencies]
+windows-sys = { version = "0.61.2", features = ["Win32_Foundation", "Win32_Storage_FileSystem"] }
+
+[lints.rust]
+unreachable_pub = "warn"
+
+[profile.release]
+strip = "debuginfo"
+lto = "thin"

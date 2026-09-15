@@ -1,0 +1,15 @@
+---
+source: tests/compiler_snapshots.rs
+expression: project.read(path)?
+---
+{
+  "name": "Confset",
+  "enabled": true,
+  "columns": [
+    80,
+    100
+  ],
+  "rules": {
+    "strict": "error"
+  }
+}

@@ -1,0 +1,11 @@
+amends
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Config.pkl" // x-release-please-version
+
+import "config/python.pkl"
+import "config/web.pkl"
+
+tools {
+  ["web-format"] = web.formatter
+  ["web-lint"] = web.linter
+  ["python-lint"] = python.linter
+}

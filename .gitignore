@@ -1,0 +1,8 @@
+/target/
+/work/
+/.confset/
+
+__pycache__/
+node_modules/
+/dist/
+*.snap.new

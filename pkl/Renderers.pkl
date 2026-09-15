@@ -1,0 +1,4 @@
+/// Pure Pkl renderers for custom text formats.
+module confset.Renderers
+
+function lines(values: List<String>) = values.join("\n") + "\n"

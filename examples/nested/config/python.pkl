@@ -1,0 +1,14 @@
+import
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Builtins.pkl" // x-release-please-version
+
+import "shared/settings.pkl"
+
+linter = (Builtins.ruff) {
+  directory = "packages/python"
+  config {
+    ["line-length"] = settings.width
+    lint {
+      select = List("E", "F", "I")
+    }
+  }
+}
