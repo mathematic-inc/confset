@@ -1,5 +1,18 @@
 # Confset
 
+[![crates.io](https://img.shields.io/crates/v/confset?style=flat-square)](https://crates.io/crates/confset)
+[![license](https://img.shields.io/crates/l/confset?style=flat-square)](LICENSE)
+[![ci](https://img.shields.io/github/actions/workflow/status/mathematic-inc/confset/ci.yml?branch=main&label=ci&style=flat-square)](https://github.com/mathematic-inc/confset/actions/workflows/ci.yml)
+[![checks](https://img.shields.io/github/actions/workflow/status/mathematic-inc/confset/hk.yml?branch=main&label=checks&style=flat-square)](https://github.com/mathematic-inc/confset/actions/workflows/hk.yml)
+[![release](https://img.shields.io/github/v/release/mathematic-inc/confset?style=flat-square)](https://github.com/mathematic-inc/confset/releases/latest)
+[![MSRV](https://img.shields.io/crates/msrv/confset?style=flat-square)](Cargo.toml)
+
+[![Cargo Binstall](https://img.shields.io/badge/cargo--binstall-supported-blue?style=flat-square)](#installation)
+[![Pkl](https://img.shields.io/badge/configuration-Pkl-6E56CF?style=flat-square)](https://pkl-lang.org/)
+[![macOS](https://img.shields.io/badge/macOS-amd64%20%7C%20arm64-000000?style=flat-square&logo=apple&logoColor=white)](https://github.com/mathematic-inc/confset/releases/latest)
+[![Linux](https://img.shields.io/badge/Linux-amd64%20%7C%20arm64-FCC624?style=flat-square&logo=linux&logoColor=black)](https://github.com/mathematic-inc/confset/releases/latest)
+[![Windows](https://img.shields.io/badge/Windows-amd64%20%7C%20arm64-0078D4?style=flat-square&logo=windows&logoColor=white)](https://github.com/mathematic-inc/confset/releases/latest)
+
 Confset generates native tool configuration from one `confset.pkl`. It embeds
 [pklr](https://github.com/jdx/pklr), so generation does not require an installed
 Pkl CLI. Tools and editor extensions read the generated files through their
@@ -250,6 +263,11 @@ for the next generation.
 
 ## Building and contributing
 
+Start with a [GitHub Discussion](https://github.com/mathematic-inc/confset/discussions/new)
+to propose a change. Mathematic maintainers implement accepted proposals and
+credit their authors. Read the [contribution policy](https://github.com/mathematic-inc/confset/blob/main/CONTRIBUTING.md)
+before starting implementation work.
+
 Use Rust **1.98.1** (the CI toolchain), then run:
 
 ```sh
@@ -276,3 +294,9 @@ drive. Resolve symlinks before relying on a directory's apparent location.
 its platform archive, Pkl package metadata, package ZIP, checksums, and third-party
 license notices. Pass `--target TRIPLE` for an installed Rust target. See
 [the release workflow](docs/releasing.md) for artifact names and publication.
+
+## License
+
+[MIT](LICENSE).
+
+> Confset is free and open-source work by Mathematic Inc., a 501(c)(3) nonprofit. If you find it useful, please consider [donating](https://github.com/sponsors/mathematic-inc).
