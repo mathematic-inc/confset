@@ -1,0 +1,3 @@
+# The native spelling test intentionally exercises dictionary overrides.
+[type.py.extend-words]
+teh = "teh"

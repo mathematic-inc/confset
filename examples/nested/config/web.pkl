@@ -1,0 +1,21 @@
+import
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Builtins.pkl" // x-release-please-version
+
+import "shared/settings.pkl"
+
+formatter = (Builtins.oxfmt) {
+  directory = "packages/web"
+  config {
+    printWidth = settings.width
+    semi = false
+  }
+}
+
+linter = (Builtins.oxlint) {
+  directory = "packages/web"
+  config {
+    categories {
+      correctness = "deny"
+    }
+  }
+}

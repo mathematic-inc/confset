@@ -1,0 +1,19 @@
+---
+source: tests/compiler_snapshots.rs
+expression: "project.ok(&[\"--help\"])?"
+---
+Generate native tool configuration from Pkl
+
+Usage: confset [OPTIONS] <COMMAND>
+
+Commands:
+  init      Create a starter configuration, preserving an existing file
+  generate  Create or update native configuration files
+  validate  Evaluate and compile without writing generated configuration files
+  list      List configured outputs, formats, and ownership status
+  clean     Remove unmodified generated files using ownership records
+
+Options:
+      --config <FILE>  Select a Pkl file instead of normal configuration discovery
+  -h, --help           Print help
+  -V, --version        Print version

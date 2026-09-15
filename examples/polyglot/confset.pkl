@@ -1,0 +1,54 @@
+amends
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Config.pkl" // x-release-please-version
+
+import
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Builtins.pkl" // x-release-please-version
+
+local width = 100
+
+tools {
+  ["rust"] = (Builtins.rustfmt) {
+    config {
+      edition = "2024"
+      max_width = width
+    }
+  }
+
+  ["python"] = (Builtins.ruff) {
+    directory = "python"
+    config {
+      ["line-length"] = width
+      lint {
+        select = List("E", "F", "I")
+      }
+    }
+  }
+
+  ["types"] = (Builtins.ty) {
+    directory = "python"
+    config {
+      environment {
+        ["python-version"] = "3.14"
+      }
+    }
+  }
+
+  ["sql"] = (Builtins.sqlfluff) {
+    config {
+      sqlfluff {
+        dialect = "postgres"
+        max_line_length = width
+      }
+    }
+  }
+
+  ["shell"] = (Builtins.shfmt) {
+    config {
+      root = true
+      ["*.{sh,bash}"] {
+        indent_style = "space"
+        indent_size = 2
+      }
+    }
+  }
+}
