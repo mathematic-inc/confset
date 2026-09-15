@@ -6,8 +6,9 @@ workflow. The release environment permits the main branch and version tags.
 
 ## Pipeline
 
-1. Release Please updates Cargo versions, the changelog, the release manifest,
-   and versioned Pkl addresses in documentation and examples.
+1. Release Please updates Cargo versions, the changelog, and the release manifest.
+   Its workflow then synchronizes both version components in Pkl package addresses
+   in the release PR; the generic updater changes only the first version per line.
 2. The tag workflow builds and tests the package and calls the reusable prebuilt
    workflow. It builds macOS and Windows on amd64 and arm64, plus GNU and musl
    Linux builds for both architectures.
@@ -42,9 +43,10 @@ examples, and third-party license notices.
 The Pkl assets are `confset@VERSION`, `confset@VERSION.zip`, and
 `confset@VERSION.sha256`. These are the metadata, exact embedded ZIP bytes, and
 metadata checksum. They are published below the matching `vVERSION` release URL
-in `mathematic-inc/confset`. Fixed ZIP timestamps, ordering, and permissions keep
-the package identical across platforms. The checksum manifests reject divergent
-packages before publication.
+in `mathematic-inc/confset`. Fixed ZIP timestamps, ordering, platform metadata,
+permissions, and normalized line endings keep the package identical across
+platforms. The checksum manifests reject divergent packages in pull request CI
+and before publication.
 
 For a local package build:
 

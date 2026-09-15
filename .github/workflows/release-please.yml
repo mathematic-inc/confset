@@ -17,8 +17,61 @@ jobs:
       pull-requests: write
     steps:
       - name: Run Release Please
+        id: release
         uses: googleapis/release-please-action@45996ed1f6d02564a971a2fa1b5860e934307cf7 # v5.0.0
         with:
           token: ${{ secrets.RELEASE_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+      - name: Synchronize Pkl package addresses
+        if: ${{ steps.release.outputs.prs_created == 'true' }}
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        env:
+          RELEASE_PR: ${{ steps.release.outputs.pr }}
+        with:
+          github-token: ${{ secrets.RELEASE_TOKEN }}
+          script: |
+            const pr = JSON.parse(process.env.RELEASE_PR);
+            const branch = pr.headBranchName;
+            if (!branch.startsWith("release-please--")) {
+              throw new Error("Expected a Release Please branch");
+            }
+            const { data: ref } = await github.rest.git.getRef({
+              ...context.repo, ref: "heads/" + branch,
+            });
+            const head = ref.object.sha;
+            async function read(path) {
+              const { data } = await github.rest.repos.getContent({
+                ...context.repo, path, ref: head,
+              });
+              if (data.type !== "file" || data.encoding !== "base64") {
+                throw new Error("Expected a repository file: " + path);
+              }
+              return Buffer.from(data.content, "base64").toString("utf8");
+            }
+            const version = JSON.parse(await read(".release-please-manifest.json"))["."];
+            const config = JSON.parse(await read("release-please-config.json"));
+            const prefix = "package://github.com/mathematic-inc/confset/releases/download/v";
+            const additions = [];
+            for (const path of config.packages["."]["extra-files"]) {
+              const source = await read(path);
+              const updated = source.replace(
+                /package:\/\/github\.com\/mathematic-inc\/confset\/releases\/download\/v[^/]+\/confset@[^#"\s]+/g,
+                prefix + version + "/confset@" + version,
+              );
+              if (source !== updated) {
+                additions.push({ path, contents: Buffer.from(updated).toString("base64") });
+              }
+            }
+            if (additions.length) {
+              await github.graphql(
+                "mutation($input: CreateCommitOnBranchInput!) { createCommitOnBranch(input: $input) { commit { oid } } }",
+                { input: {
+                  branch: { repositoryNameWithOwner: context.repo.owner + "/" + context.repo.repo, branchName: branch },
+                  expectedHeadOid: head,
+                  message: { headline: "chore: synchronize Pkl package versions" },
+                  fileChanges: { additions },
+                } },
+              );
+              core.info("Synchronized " + additions.length + " files with Pkl package " + version);
+            }

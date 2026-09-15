@@ -30,13 +30,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let mut zip = zip::ZipWriter::new(archive);
     let options = zip::write::SimpleFileOptions::default()
         .compression_method(zip::CompressionMethod::Deflated)
+        .system(zip::System::Unix)
         .last_modified_time(zip::DateTime::default())
         .unix_permissions(0o644);
     zip.start_file("Builtins.pkl", options)?;
     zip.write_all(builtins.as_bytes())?;
     for name in ["Config.pkl", "Renderers.pkl"] {
         zip.start_file(name, options)?;
-        zip.write_all(&std::fs::read(PathBuf::from("pkl").join(name))?)?;
+        // Package identity must not depend on the checkout's line endings.
+        let source = std::fs::read_to_string(PathBuf::from("pkl").join(name))?;
+        zip.write_all(source.replace("\r\n", "\n").as_bytes())?;
     }
     zip.finish()?;
     let version = std::env::var("CARGO_PKG_VERSION")?;
