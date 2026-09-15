@@ -1,5 +1,5 @@
 amends
-  "package://github.com/mathematic-inc/confset/releases/download/v0.1.0/confset@0.1.0#/Config.pkl" // x-release-please-version
+  "package://github.com/mathematic-inc/confset/releases/download/v0.1.1/confset@0.1.1#/Config.pkl" // x-release-please-version
 
 local colorNames = List("red", "green", "blue")
 local function render(values: List<String>) =
