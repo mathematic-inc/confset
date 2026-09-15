@@ -1,0 +1,285 @@
+[
+  {
+    "id": "oxlint",
+    "symbol": "oxlint",
+    "default": "json",
+    "formats": {
+      "json": ".oxlintrc.json"
+    },
+    "alternatives": [
+      ".oxlintrc.json",
+      ".oxlintrc.jsonc",
+      "oxlint.config.ts",
+      "oxlint.config.mts"
+    ]
+  },
+  {
+    "id": "oxfmt",
+    "symbol": "oxfmt",
+    "default": "json",
+    "formats": {
+      "json": ".oxfmtrc.json"
+    },
+    "alternatives": [
+      ".oxfmtrc.json",
+      ".oxfmtrc.jsonc",
+      "oxfmt.config.ts",
+      "oxfmt.config.mts"
+    ]
+  },
+  {
+    "id": "prettier",
+    "symbol": "prettier",
+    "default": "json",
+    "formats": {
+      "json": ".prettierrc.json",
+      "yaml": ".prettierrc.yaml",
+      "toml": ".prettierrc.toml"
+    },
+    "alternatives": [
+      ".prettierrc",
+      ".prettierrc.json",
+      ".prettierrc.json5",
+      ".prettierrc.yml",
+      ".prettierrc.yaml",
+      ".prettierrc.toml",
+      ".prettierrc.js",
+      ".prettierrc.cjs",
+      ".prettierrc.mjs",
+      ".prettierrc.ts",
+      ".prettierrc.cts",
+      ".prettierrc.mts",
+      "prettier.config.js",
+      "prettier.config.cjs",
+      "prettier.config.mjs",
+      "prettier.config.ts",
+      "prettier.config.cts",
+      "prettier.config.mts"
+    ],
+    "manifest_key": "prettier"
+  },
+  {
+    "id": "rustfmt",
+    "symbol": "rustfmt",
+    "default": "toml",
+    "formats": {
+      "toml": "rustfmt.toml"
+    },
+    "alternatives": [
+      "rustfmt.toml",
+      ".rustfmt.toml"
+    ]
+  },
+  {
+    "id": "ruff",
+    "symbol": "ruff",
+    "default": "toml",
+    "formats": {
+      "toml": "ruff.toml"
+    },
+    "alternatives": [
+      "ruff.toml",
+      ".ruff.toml"
+    ]
+  },
+  {
+    "id": "ty",
+    "symbol": "ty",
+    "default": "toml",
+    "formats": {
+      "toml": "ty.toml"
+    },
+    "alternatives": [
+      "ty.toml"
+    ]
+  },
+  {
+    "id": "rumdl",
+    "symbol": "rumdl",
+    "default": "toml",
+    "formats": {
+      "toml": ".rumdl.toml"
+    },
+    "alternatives": [
+      ".rumdl.toml",
+      "rumdl.toml",
+      ".config/rumdl.toml"
+    ]
+  },
+  {
+    "id": "ryl",
+    "symbol": "ryl",
+    "default": "toml",
+    "formats": {
+      "toml": ".ryl.toml",
+      "yaml": ".yamllint.yaml"
+    },
+    "alternatives": [
+      "ryl.toml",
+      ".ryl.toml",
+      ".yamllint",
+      ".yamllint.yaml",
+      ".yamllint.yml",
+      ".config/.ryl.toml",
+      ".config/ryl.toml"
+    ],
+    "config": {
+      "rules": {
+        "key-duplicates": "enable"
+      }
+    }
+  },
+  {
+    "id": "tombi",
+    "symbol": "tombi",
+    "default": "toml",
+    "formats": {
+      "toml": "tombi.toml"
+    },
+    "alternatives": [
+      "tombi.toml",
+      ".tombi.toml",
+      ".config/tombi.toml"
+    ]
+  },
+  {
+    "id": "typos",
+    "symbol": "typos",
+    "default": "toml",
+    "formats": {
+      "toml": "typos.toml"
+    },
+    "alternatives": [
+      "typos.toml",
+      ".typos.toml",
+      "_typos.toml"
+    ]
+  },
+  {
+    "id": "sqlfluff",
+    "symbol": "sqlfluff",
+    "default": "ini",
+    "formats": {
+      "ini": ".sqlfluff"
+    },
+    "alternatives": [
+      ".sqlfluff"
+    ]
+  },
+  {
+    "id": "actionlint",
+    "symbol": "actionlint",
+    "default": "yaml",
+    "formats": {
+      "yaml": ".github/actionlint.yaml"
+    },
+    "alternatives": [
+      ".github/actionlint.yaml",
+      ".github/actionlint.yml"
+    ]
+  },
+  {
+    "id": "gitleaks",
+    "symbol": "gitleaks",
+    "default": "toml",
+    "formats": {
+      "toml": ".gitleaks.toml"
+    },
+    "alternatives": [
+      ".gitleaks.toml"
+    ]
+  },
+  {
+    "id": "lychee",
+    "symbol": "lychee",
+    "default": "toml",
+    "formats": {
+      "toml": "lychee.toml"
+    },
+    "alternatives": [
+      "lychee.toml",
+      ".lychee.toml"
+    ]
+  },
+  {
+    "id": "cargo-deny",
+    "symbol": "cargo_deny",
+    "default": "toml",
+    "formats": {
+      "toml": "deny.toml"
+    },
+    "alternatives": [
+      "deny.toml"
+    ]
+  },
+  {
+    "id": "buf",
+    "symbol": "buf",
+    "default": "yaml",
+    "formats": {
+      "yaml": "buf.yaml"
+    },
+    "alternatives": [
+      "buf.yaml"
+    ],
+    "config": {
+      "version": "v2"
+    }
+  },
+  {
+    "id": "typespec",
+    "symbol": "typespec",
+    "default": "yaml",
+    "formats": {
+      "yaml": "tspconfig.yaml"
+    },
+    "alternatives": [
+      "tspconfig.yaml"
+    ]
+  },
+  {
+    "id": "knip",
+    "symbol": "knip",
+    "default": "json",
+    "formats": {
+      "json": "knip.json"
+    },
+    "alternatives": [
+      "knip.json",
+      "knip.jsonc",
+      ".knip.json",
+      ".knip.jsonc",
+      "knip.ts",
+      "knip.js",
+      "knip.config.ts",
+      "knip.config.js"
+    ],
+    "manifest_key": "knip"
+  },
+  {
+    "id": "shfmt",
+    "symbol": "shfmt",
+    "default": "ini",
+    "formats": {
+      "ini": ".editorconfig"
+    },
+    "alternatives": [
+      ".editorconfig"
+    ]
+  },
+  {
+    "id": "yamlfmt",
+    "symbol": "yamlfmt",
+    "default": "yaml",
+    "formats": {
+      "yaml": ".yamlfmt"
+    },
+    "alternatives": [
+      ".yamlfmt",
+      "yamlfmt.yml",
+      ".yamlfmt.yml",
+      "yamlfmt.yaml",
+      ".yamlfmt.yaml"
+    ]
+  }
+]

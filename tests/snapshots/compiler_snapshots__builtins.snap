@@ -1,0 +1,115 @@
+---
+source: tests/compiler_snapshots.rs
+expression: "include_str!(concat!(env!(\"OUT_DIR\"), \"/Builtins.pkl\"))"
+---
+/// Native configuration producers bundled with Confset.
+module confset.Builtins
+import "Config.pkl"
+
+oxlint = new Config.Tool {
+  builtin = "oxlint"
+  format = "json"
+}
+
+oxfmt = new Config.Tool {
+  builtin = "oxfmt"
+  format = "json"
+}
+
+prettier = new Config.Tool {
+  builtin = "prettier"
+  format = "json"
+}
+
+rustfmt = new Config.Tool {
+  builtin = "rustfmt"
+  format = "toml"
+}
+
+ruff = new Config.Tool {
+  builtin = "ruff"
+  format = "toml"
+}
+
+ty = new Config.Tool {
+  builtin = "ty"
+  format = "toml"
+}
+
+rumdl = new Config.Tool {
+  builtin = "rumdl"
+  format = "toml"
+}
+
+ryl = new Config.Tool {
+  builtin = "ryl"
+  format = "toml"
+  config = new Dynamic {
+    `rules` = new Dynamic {
+      ["key-duplicates"] = "enable"
+    }
+  }
+}
+
+tombi = new Config.Tool {
+  builtin = "tombi"
+  format = "toml"
+}
+
+typos = new Config.Tool {
+  builtin = "typos"
+  format = "toml"
+}
+
+sqlfluff = new Config.Tool {
+  builtin = "sqlfluff"
+  format = "ini"
+}
+
+actionlint = new Config.Tool {
+  builtin = "actionlint"
+  format = "yaml"
+}
+
+gitleaks = new Config.Tool {
+  builtin = "gitleaks"
+  format = "toml"
+}
+
+lychee = new Config.Tool {
+  builtin = "lychee"
+  format = "toml"
+}
+
+cargo_deny = new Config.Tool {
+  builtin = "cargo-deny"
+  format = "toml"
+}
+
+buf = new Config.Tool {
+  builtin = "buf"
+  format = "yaml"
+  config = new Dynamic {
+    `version` = "v2"
+  }
+}
+
+typespec = new Config.Tool {
+  builtin = "typespec"
+  format = "yaml"
+}
+
+knip = new Config.Tool {
+  builtin = "knip"
+  format = "json"
+}
+
+shfmt = new Config.Tool {
+  builtin = "shfmt"
+  format = "ini"
+}
+
+yamlfmt = new Config.Tool {
+  builtin = "yamlfmt"
+  format = "yaml"
+}
