@@ -1,0 +1,20 @@
+/// Confset's generation schema. Tool options remain open native data.
+module confset.Config
+
+open class File {
+  path: String
+  format: String = "json"
+  config: Any = new Dynamic {}
+}
+
+open class Tool {
+  builtin: String = ""
+  format: String = ""
+  directory: String = "."
+  path: String? = null
+  config: Any = new Dynamic {}
+  files: Mapping<String, File> = new {}
+}
+
+tools: Mapping<String, Tool> = new {}
+files: Mapping<String, File> = new {}

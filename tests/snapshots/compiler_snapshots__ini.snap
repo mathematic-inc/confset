@@ -1,0 +1,7 @@
+---
+source: tests/compiler_snapshots.rs
+expression: project.read(path)?
+---
+[defaults]
+name = Confset
+enabled = true
