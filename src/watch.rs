@@ -13,6 +13,8 @@ use crate::{compiler, publication};
 
 /// Coalesces atomic-save rename/write bursts without delaying interactive updates.
 const SAVE_DEBOUNCE: Duration = Duration::from_millis(150);
+// Some filesystems miss notifications; fingerprint polling bounds detection latency.
+const INPUT_POLL_INTERVAL: Duration = Duration::from_secs(1);
 
 enum Event {
     Files(notify::Result<notify::Event>),
@@ -59,7 +61,16 @@ pub(crate) fn run(source: &Source) -> Result<()> {
                     Err(RecvTimeoutError::Disconnected) => break,
                 }
             }
-            None => receiver.recv().context("filesystem watcher stopped")?,
+            None => match receiver.recv_timeout(INPUT_POLL_INTERVAL) {
+                Ok(event) => event,
+                Err(RecvTimeoutError::Timeout) => {
+                    if inputs.changed() {
+                        deadline = Some(Instant::now() + SAVE_DEBOUNCE);
+                    }
+                    continue;
+                }
+                Err(RecvTimeoutError::Disconnected) => anyhow::bail!("filesystem watcher stopped"),
+            },
         };
         match event {
             Event::Stop => break,
