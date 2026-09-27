@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/mathematic-inc/confset/compare/v0.1.1...v0.1.2) (2026-09-27)
+
+
+### Bug Fixes
+
+* **confset:** Recover watch updates and gate Dependabot merges ([#6](https://github.com/mathematic-inc/confset/issues/6)) ([8182a62](https://github.com/mathematic-inc/confset/commit/8182a626bf856a4a664f8e4b5354efa83517b6a3))
+
 ## [0.1.1](https://github.com/mathematic-inc/confset/compare/v0.1.0...v0.1.1) (2026-09-15)
 
 
