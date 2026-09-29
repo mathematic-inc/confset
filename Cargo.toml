@@ -37,7 +37,7 @@ ctrlc = { version = "3.5.2", features = ["termination"] }
 dirs = "7.0.0"
 fs2 = "0.4.3"
 notify = "8.2.0"
-pklr = "=2.0.4"
+pklr = "=3.0.0"
 pollster = "1.0.1"
 serde = { version = "1.0.229", features = ["derive"] }
 serde_json = { version = "1.0.151", features = ["float_roundtrip", "preserve_order"] }
