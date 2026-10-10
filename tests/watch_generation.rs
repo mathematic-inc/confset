@@ -8,7 +8,7 @@ use support::project::{Project, Result};
 use std::io::{BufRead, BufReader};
 use std::process::{Child, Stdio};
 use std::sync::mpsc::{self, Receiver};
-use std::time::Duration;
+use std::time::{Duration, Instant};
 
 /// Allows native filesystem notifications and debug Pkl evaluation to complete on CI.
 const EVENT_TIMEOUT: Duration = Duration::from_secs(30);
@@ -42,12 +42,14 @@ impl Watching {
         Ok(Self { child, messages })
     }
     fn wait_for(&self, text: &str) -> Result {
-        let deadline = std::time::Instant::now() + EVENT_TIMEOUT;
+        self.wait_for_until(text, Instant::now() + EVENT_TIMEOUT)
+    }
+    fn wait_for_until(&self, text: &str, deadline: Instant) -> Result {
         let mut seen = Vec::new();
         loop {
             match self
                 .messages
-                .recv_timeout(deadline.saturating_duration_since(std::time::Instant::now()))
+                .recv_timeout(deadline.saturating_duration_since(Instant::now()))
             {
                 Ok(message) if message.contains(text) => return Ok(()),
                 Ok(message) => seen.push(message),
@@ -143,8 +145,12 @@ files { ["combined"] { path = "out.json"; config = fragments } }
     for width in 120..140 {
         project.write("fragments/two.pkl", format!("width = {width}\n"))?;
     }
-    watching.wait_for("generated 1 configuration files")?;
-    assert!(project.read("out.json")?.contains("139"));
+    // A burst can publish an intermediate value before the last save is observed.
+    // Keep one deadline while waiting for publication of the final value.
+    let deadline = Instant::now() + EVENT_TIMEOUT;
+    while !project.read("out.json")?.contains("139") {
+        watching.wait_for_until("generated 1 configuration files", deadline)?;
+    }
     watching.shutdown();
     Ok(())
 }
